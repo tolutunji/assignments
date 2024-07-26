@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
 
     const decoder = new StringDecoder('utf-8');
 
-    const buffer = '';
+    let buffer = '';
 
     req.on('data', (data) => {
         buffer += decoder.write(data)
@@ -41,7 +41,7 @@ const server = http.createServer((req, res) => {
         buffer += decoder.end()
         
 
-        res.end("Pizza for your every occasion")
+        res.end('Pizza for your every occasion');
         
         console.log(buffer);
     });

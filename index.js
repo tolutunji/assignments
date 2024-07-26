@@ -32,12 +32,12 @@ const server = http.createServer(function(req, res) {
 
     const decoder = new StringDecoder("utf-8");
 
-    const buffer = "";
+    let buffer = "";
 
     req.on("data", function(data) {
         buffer += decoder.write(data)
     });
-
+    
     req.on("end", function() {
         buffer += decoder.end()
 
