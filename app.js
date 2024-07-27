@@ -39,9 +39,33 @@ const server = http.createServer((req, res) => {
 
     req.on('end', () => {
         buffer += decoder.end()
+
+        let routeHandler = typeof(router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound;
+
+
+
+        const data = {
+            'trimmedPath' : trimmedPath,
+            'queryStringObject' : queryStringObject,
+            'method' : method,
+            'headers' : headers,
+            'payload' : buffer,
+        };
+
+
+        routeHandler(data, (statusCode, payload) => {
+            statusCode = typeof(statusCode) === 'number' ? statusCode : 200;
+            payload = typeof(payload) === 'object' ? payload : {};
+
+
+            const payloadString =  JSON.stringify(payload);
+
+            res.writeHead(statusCode);
+            res.end(payloadString)
+        });
         
 
-        res.end('Pizza for your every occasion');
+        //res.end('Pizza for your every occasion');
         
         console.log(buffer);
     });
@@ -60,3 +84,24 @@ const server = http.createServer((req, res) => {
 server.listen(port, () => {
     console.log(`Server running on port ${port}`)
 });
+
+
+
+
+
+const handlers = {};
+
+
+handlers.sample = (data, callback) => {
+    callback(406, {'message' : 'The best stop for a pizza treat'})
+};
+
+handlers.notFound = (data, callback) => {
+    callback(404, {'message' : 'Page not found'})
+};
+
+
+
+const router = {
+    'sample' : handlers.sample,
+};
