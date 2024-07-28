@@ -1,11 +1,10 @@
 const http = require('http');
 const url = require('url');
 const StringDecoder = require('string_decoder').StringDecoder;
+const config = require('./config')
 
 
 
-
-const port = 5500;
 
 
 
@@ -60,6 +59,8 @@ const server = http.createServer((req, res) => {
 
             const payloadString =  JSON.stringify(payload);
 
+
+            //res.setHeader('Content-Type' , 'application/json')
             res.writeHead(statusCode);
             res.end(payloadString)
         });
@@ -81,8 +82,8 @@ const server = http.createServer((req, res) => {
 
 
 
-server.listen(port, () => {
-    console.log(`Server running on port ${port}`)
+server.listen(config.port, () => {
+    console.log(`Server running on port ${config.port} and in ${config.envName} mode`)
 });
 
 

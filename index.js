@@ -1,12 +1,12 @@
 const http = require("http");
 const url = require("url");
 const StringDecoder = require("string_decoder").StringDecoder;
+const config = require("./indexConfig")
 
 
 
 
 
-const port = 5700;
 
 
 
@@ -56,11 +56,12 @@ const server = http.createServer(function(req, res) {
         chosenHandler(data, function(statusCode, payload) {
 
             statusCode = typeof(statusCode) === "number" ? statusCode : 200;
-            payload = typeof(statusCode) === "object" ? payload : {};
+            payload = typeof(payload) === "object" ? payload : {};
 
 
             const payloadString = JSON.stringify(payload);
 
+            //res.setHeader("Content-Type" , "application/json")
             res.writeHead(statusCode);
             res.end(payloadString)
         })
@@ -79,8 +80,8 @@ const server = http.createServer(function(req, res) {
 
 
 
-server.listen(port, function() {
-    console.log(`Server started at port ${port}`)
+server.listen(config.port, function() {
+    console.log(`Server started at port ${config.port} and in ${config.envName} mode`)
 });
 
 
