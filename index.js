@@ -1,7 +1,9 @@
 const http = require("http");
+const https = require("https");
 const url = require("url");
 const StringDecoder = require("string_decoder").StringDecoder;
-const config = require("./indexConfig")
+const config = require("./indexConfig");
+const fs = require("fs");
 
 
 
@@ -10,8 +12,39 @@ const config = require("./indexConfig")
 
 
 
-const server = http.createServer(function(req, res) {
+const httpServer = http.createServer(function(req, res) {
+    
+    requestHandler(req, res)
 
+});
+
+httpServer.listen(config.httpPort, function() {
+    console.log(`Server started at port ${config.httpPort} and in ${config.envName} mode`)
+});
+
+
+const httpsServerOptions = {
+    "key" : fs.readFileSync("./https/key.pen"),
+    "cert" : fs.readFileSync("./https/cert.pen")
+};
+
+
+
+const httpsServer = https.createServer(httpsServerOptions, function(req, res) {
+    
+    requestHandler(req, res)
+
+});
+
+httpsServer.listen(config.httpsPort, function() {
+    console.log(`Server started at port ${config.httpsPort} and in ${config.envName} mode`)
+});
+
+
+
+
+
+const requestHandler = function(req, res) {
     const parsedUrl = url.parse(req.url, true);
     console.log(parsedUrl);
 
@@ -74,15 +107,7 @@ const server = http.createServer(function(req, res) {
 
     });
 
-
-});
-
-
-
-
-server.listen(config.port, function() {
-    console.log(`Server started at port ${config.port} and in ${config.envName} mode`)
-});
+}
 
 
 
