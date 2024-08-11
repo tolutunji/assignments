@@ -3,11 +3,23 @@ const https = require('https');
 const url = require('url');
 const StringDecoder = require('string_decoder').StringDecoder;
 const config = require('./config');
-const fs = require('fs')
+const fs = require('fs');
+const deal = require('./lib/data');
 
 
 
-
+// deal.create('profile', 'person', {'name':'patrick'}, function(err){
+//     console.log('This is an error', err)
+// });
+// deal.read('profile', 'person', function(err,data){
+//     console.log('This is an error', err, data)
+// });
+// deal.update('profile', 'person', {'name':'Abu Ezekiel', 'age' : 44, 'sex' : 'male'}, function(err){
+//     console.log('This is an error', err)
+// });
+deal.delete('profile', 'person', function(err){
+    console.log('This is an error', err)
+});
 
 
 const httpServer = http.createServer((req, res) => {
