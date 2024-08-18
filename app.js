@@ -2,9 +2,11 @@ const http = require('http');
 const https = require('https');
 const url = require('url');
 const StringDecoder = require('string_decoder').StringDecoder;
-const config = require('./config');
+const config = require('./lib/config');
+const handlers = require('./lib/handlers');
 const fs = require('fs');
-const deal = require('./lib/data');
+// const deal = require('./lib/data');
+const helpers = require('./lib/helpers')
 
 
 
@@ -17,9 +19,9 @@ const deal = require('./lib/data');
 // deal.update('profile', 'person', {'name':'Abu Ezekiel', 'age' : 44, 'sex' : 'male'}, function(err){
 //     console.log('This is an error', err)
 // });
-deal.delete('profile', 'person', function(err){
-    console.log('This is an error', err)
-});
+// deal.delete('profile', 'person', function(err){
+//     console.log('This is an error', err)
+// });
 
 
 const httpServer = http.createServer((req, res) => {
@@ -85,7 +87,7 @@ const requestHandler = (req, res) => {
             'queryStringObject' : queryStringObject,
             'method' : method,
             'headers' : headers,
-            'payload' : buffer,
+            'payload' : helpers.parseJsonToObject(buffer),
         };
 
 
@@ -120,19 +122,10 @@ const requestHandler = (req, res) => {
 
 
 
-const handlers = {};
-
-
-handlers.sample = (data, callback) => {
-    callback(406, {'message' : 'The best stop for a pizza treat'})
-};
-
-handlers.notFound = (data, callback) => {
-    callback(404, {'message' : 'Page not found'})
-};
 
 
 
 const router = {
     'sample' : handlers.sample,
+    'users' : handlers.users,
 };
