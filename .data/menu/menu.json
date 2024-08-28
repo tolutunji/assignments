@@ -1,0 +1,53 @@
+{
+    
+  "1": {
+    "name": "Margherita",
+    "description": "Classic cheese pizza with tomato sauce",
+    "price": 8.99
+  },
+  "2": {
+    "name": "Pepperoni",
+    "description": "Pepperoni, cheese, and tomato sauce",
+    "price": 9.99
+  },
+  "3": {
+    "name": "Bizmark pizza",
+    "description": "Classic cheese pizza with tomato sauce, topped with cooked ham and fried egg", 
+    "price": 7.99
+  },
+  "4": {
+    "name": "Brooklyn style pizza",
+    "description": "tomato with vegetable oil, cheese, topped with grilled fish, goat cheese and cooked ham",
+    "price": 9.59
+  },
+  "5": {
+    "name": "Buffalo style pizza",
+    "description": "ingredients include crushed tomato, oregano, garlic powder and dried basil and topped with fresh mozzarella, cooked chicken, blue cheese and freshly choppeed onions",
+    "price": 10.99
+  },
+  "6": {
+    "name": "California pizza",
+    "description": "Prepared with tomato and garlic powder, and topped with fresh vegetables, avocado and boiled meat",
+    "price": 5.99
+  },
+  "7": {
+    "name": "Caprese",
+    "description": "Tomato, olive oil, and garlic, topped with balsamic glaze and fresh basil leaves",
+    "price": 6.99
+  },
+  "8": {
+    "name": "Carbonara",
+    "description": "tomato sauce, spices, cheese, topped with red meat, onions, fresh  vegetables",
+    "price": 6.99
+  },
+  "9": {
+    "name": "Detroit pizza",
+    "description": "Pepperoni, cheese topped with swiss cheese, onions and pickle",
+    "price": 7.99
+  },
+  "10": {
+    "name": "Greek style pizza",
+    "description": "Pepperoni, cheese, topped with onions, boiled egg and tomato",
+    "price": 5.99
+  }
+}

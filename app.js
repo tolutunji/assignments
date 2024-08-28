@@ -128,4 +128,7 @@ const requestHandler = (req, res) => {
 const router = {
     'sample' : handlers.sample,
     'users' : handlers.users,
-};
+    'tokens' : handlers.tokens,
+    'menu' : handlers.menu,
+    'cart' : handlers.cart,
+}; 
